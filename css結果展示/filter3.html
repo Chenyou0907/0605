@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陰影效果</title>
+    <style>
+        .shadow-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        
+        .shadow-item {
+            width: 200px;
+            height: 200px;
+            background-color: #ff6b6b;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .shadow-1 {
+            filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5));
+        }
+
+        .shadow-2 {
+            filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.5));
+        }
+
+        .shadow-3 {
+            filter: drop-shadow(15px 15px 15px rgba(0,0,0,0.5));
+        }
+    </style>
+</head>
+<body>
+    <div class="shadow-container">
+        <div class="shadow-item shadow-1">陰影5px</div>
+        <div class="shadow-item shadow-2">陰影10px</div>
+        <div class="shadow-item shadow-3">陰影15px</div>
+    </div>
+</body>
+</html>

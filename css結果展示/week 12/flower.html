@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花卉展示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .flower-title {
+            background-color: #00ffff;
+            padding: 20px;
+            text-align: left;
+            font-size: 24px;
+            margin: 0;
+        }
+        .flower-image-container {
+            background-color: #00ffff;
+            padding: 10px;
+        }
+        .flower-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 第一行：標題 -->
+        <div class="flower-title">向日葵</div>
+        <div class="flower-title">玫瑰花</div>
+        <div class="flower-title">鬱金香</div>
+        <div class="flower-title">蓮花</div>
+        
+        <!-- 第二行：圖片 -->
+        <div class="flower-image-container">
+            <img src="向日葵.jpg" alt="向日葵" class="flower-image">
+        </div>
+        <div class="flower-image-container">
+            <img src="玫瑰花.jpg" alt="玫瑰花" class="flower-image">
+        </div>
+        <div class="flower-image-container">
+            <img src="鬱金香.jpg" alt="鬱金香" class="flower-image">
+        </div>
+        <div class="flower-image-container">
+            <img src="蓮花.jpg" alt="蓮花" class="flower-image">
+        </div>
+    </div>
+</body>
+</html>

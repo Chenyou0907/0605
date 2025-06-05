@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甜點選擇</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .dessert-option {
+            margin: 10px 0;
+        }
+        .dessert-option label {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>請選擇您喜歡的甜點</h1>
+    <div class="form-group">
+        <div class="dessert-option">
+            <input type="radio" name="dessert" id="cake" value="巧克力蛋糕">
+            <label for="cake">巧克力蛋糕</label>
+        </div>
+        <div class="dessert-option">
+            <input type="radio" name="dessert" id="icecream" value="草莓冰淇淋">
+            <label for="icecream">草莓冰淇淋</label>
+        </div>
+        <div class="dessert-option">
+            <input type="radio" name="dessert" id="pudding" value="焦糖布丁">
+            <label for="pudding">焦糖布丁</label>
+        </div>
+        <div class="dessert-option">
+            <input type="radio" name="dessert" id="macaron" value="草莓馬卡龍">
+            <label for="macaron">草莓馬卡龍</label>
+        </div>
+        <div class="dessert-option">
+            <input type="radio" name="dessert" id="tiramisu" value="焦糖瑪奇朵">
+            <label for="tiramisu">焦糖瑪奇朵</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <button onclick="submitSelection()">提交</button>
+        <button onclick="resetSelection()">重置</button>
+    </div>
+
+    <script>
+        function submitSelection() {
+            const selectedDessert = document.querySelector('input[name="dessert"]:checked');
+            
+            if (!selectedDessert) {
+                alert("請選擇一個甜點！");
+                return;
+            }
+            
+            const url = new URL(window.location.href);
+            url.searchParams.set('dessert', selectedDessert.value);
+            window.history.pushState({}, '', url);
+            
+            alert("你選擇了：" + selectedDessert.value);
+        }
+
+        function resetSelection() {
+            const radioButtons = document.getElementsByName('dessert');
+            radioButtons.forEach(radio => {
+                radio.checked = false;
+            });
+        }
+    </script>
+</body>
+</html>

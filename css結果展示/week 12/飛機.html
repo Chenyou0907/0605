@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="rwd-practice.css" />
+    <title>照片展示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .student-card {
+            display: flex;
+            flex-direction: column;
+        }
+        .student-title {
+            background-color: #00ffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            margin: 0;
+        }
+        .student-image-container {
+            background-color: #00ffff;
+            padding: 10px;
+        }
+        .student-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+        .video-container {
+            grid-column: span 3;
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .video-title {
+            background-color: #00ffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            margin: 0;
+        }
+        .video-wrapper {
+            background-color: #00ffff;
+            padding: 10px;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* 漢堡選單樣式 */
+        .hamburger-menu {
+            display: none;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .hamburger-icon {
+            display: inline-block;
+            width: 25px;
+            height: 20px;
+            position: relative;
+        }
+        
+        .hamburger-icon span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            left: 0;
+        }
+        
+        .hamburger-icon span:nth-child(1) {
+            top: 0px;
+        }
+        
+        .hamburger-icon span:nth-child(2) {
+            top: 8px;
+        }
+        
+        .hamburger-icon span:nth-child(3) {
+            top: 16px;
+        }
+        
+        /* 平板設備 - 螢幕寬度小於 1024px */
+        @media only screen and (max-width: 1024px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .student-title {
+                font-size: 22px;
+                padding: 15px;
+            }
+            
+            .student-image {
+                height: 250px;
+            }
+            
+            .video-container {
+                grid-column: span 2;
+                max-width: 600px;
+            }
+            
+            .hamburger-menu {
+                display: block;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+            
+            .mobil-menu {
+                display: none;
+            }
+            
+            .mobil-menu.active {
+                display: block;
+                background-color: #eee;
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+            
+            .menu-item {
+                display: block;
+                padding: 8px 0;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+        
+        /* 手機設備 - 螢幕寬度小於 768px */
+        @media only screen and (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .student-title {
+                font-size: 20px;
+                padding: 12px;
+            }
+            
+            .student-image {
+                height: 220px;
+            }
+            
+            .video-container {
+                grid-column: span 1;
+                max-width: 100%;
+            }
+        }
+        
+        /* 小型手機設備 - 螢幕寬度小於 480px */
+        @media only screen and (max-width: 480px) {
+            .student-title {
+                font-size: 18px;
+                padding: 10px;
+            }
+            
+            .student-image {
+                height: 200px;
+            }
+        }
+        
+        /* 设备切换按钮样式 */
+        .device-switcher {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        
+        .device-btn {
+            background: #666;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .device-btn:hover {
+            background: #888;
+        }
+        
+        .device-btn.active {
+            background: #00ffff;
+            color: #333;
+        }
+        
+        /* 设备预览容器 */
+        .device-preview {
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .device-preview.mobile {
+            max-width: 480px;
+            font-size: 14px;
+        }
+        
+        .device-preview.mobile .student-title {
+            font-size: 18px;
+            padding: 10px;
+        }
+        
+        .device-preview.mobile .video-title {
+            font-size: 18px;
+            padding: 10px;
+        }
+        
+        .device-preview.mobile .headline {
+            font-size: 20px;
+            padding: 15px;
+        }
+        
+        .device-preview.tablet {
+            max-width: 768px;
+            font-size: 16px;
+        }
+        
+        .device-preview.tablet .student-title {
+            font-size: 22px;
+            padding: 15px;
+        }
+        
+        .device-preview.tablet .video-title {
+            font-size: 22px;
+            padding: 15px;
+        }
+        
+        .device-preview.tablet .headline {
+            font-size: 24px;
+            padding: 20px;
+        }
+        
+        .device-preview.desktop {
+            max-width: 100%;
+            font-size: 18px;
+        }
+        
+        .device-preview.desktop .student-title {
+            font-size: 24px;
+            padding: 20px;
+        }
+        
+        .device-preview.desktop .video-title {
+            font-size: 24px;
+            padding: 20px;
+        }
+        
+        .device-preview.desktop .headline {
+            font-size: 28px;
+            padding: 25px;
+        }
+    </style>
+    <script>
+        // 等待DOM加載完成
+        document.addEventListener('DOMContentLoaded', function() {
+            // 獲取漢堡選單和移動菜單元素
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobilMenu = document.getElementById('mobil-menu');
+            
+            // 添加點擊事件來切換菜單顯示
+            hamburgerMenu.addEventListener('click', function() {
+                mobilMenu.classList.toggle('active');
+            });
+
+            // 设备切换功能
+            const deviceBtns = document.querySelectorAll('.device-btn');
+            const preview = document.querySelector('.device-preview');
+            const body = document.body;
+            
+            deviceBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 移除所有按钮的active类
+                    deviceBtns.forEach(b => b.classList.remove('active'));
+                    // 添加当前按钮的active类
+                    btn.classList.add('active');
+                    // 更新预览容器的类
+                    preview.className = 'device-preview ' + btn.dataset.device;
+                    
+                    // 根据设备类型调整图片高度和菜单显示
+                    const studentImages = document.querySelectorAll('.student-image');
+                    const hamburgerMenu = document.getElementById('hamburger-menu');
+                    const desktopMenu = document.querySelector('.desktop-menu');
+                    
+                    if (btn.dataset.device === 'mobile' || btn.dataset.device === 'tablet') {
+                        // 在手机和平板模式下显示汉堡菜单，隐藏桌面菜单
+                        hamburgerMenu.style.display = 'block';
+                        desktopMenu.style.display = 'none';
+                        
+                        if (btn.dataset.device === 'mobile') {
+                            studentImages.forEach(img => {
+                                img.style.height = '200px';
+                            });
+                        } else {
+                            studentImages.forEach(img => {
+                                img.style.height = '250px';
+                            });
+                        }
+                    } else {
+                        // 在桌面模式下隐藏汉堡菜单，显示桌面菜单
+                        hamburgerMenu.style.display = 'none';
+                        desktopMenu.style.display = 'block';
+                        
+                        studentImages.forEach(img => {
+                            img.style.height = '280px';
+                        });
+                    }
+                    
+                    // 重置移动菜单的状态
+                    const mobilMenu = document.getElementById('mobil-menu');
+                    mobilMenu.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- 设备切换按钮 -->
+    <div class="device-switcher">
+        <button class="device-btn active" data-device="desktop">電腦</button>
+        <button class="device-btn" data-device="tablet">平板</button>
+        <button class="device-btn" data-device="mobile">手機</button>
+    </div>
+    
+    <div class="device-preview desktop">
+        <div class="headline">這是一個回應式網頁設計文字過長的範例</div>
+        
+        <div class="desktop-menu">
+            <div class="menu-item">選項一</div>
+            <div class="menu-item">選項二</div>
+            <div class="menu-item">選項三</div>
+            <div class="menu-item">選項四</div>
+            <div class="menu-item">選項五</div>
+            <div class="menu-item">選項六</div>
+        </div>
+        
+        <!-- 漢堡選單按鈕 -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span style="margin-left: 10px;">選單</span>
+        </div>
+        
+        <div class="mobil-menu" id="mobil-menu">
+            <div class="menu-item">選項一</div>
+            <div class="menu-item">選項二</div>
+            <div class="menu-item">選項三</div>
+            <div class="menu-item">選項四</div>
+            <div class="menu-item">選項五</div>
+            <div class="menu-item">選項六</div>
+        </div>
+
+        <div class="container">
+            <!-- 學生卡片 -->
+            <div class="student-card">
+                <div class="student-title">陳正祐</div>
+                <div class="student-image-container">
+                    <img src="陳正祐.jpg" alt="陳正祐" class="student-image">
+                </div>
+            </div>
+            
+            <div class="student-card">
+                <div class="student-title">王唯毓</div>
+                <div class="student-image-container">
+                    <img src="王唯毓.jpg" alt="王唯毓" class="student-image">
+                </div>
+            </div>
+            
+            <div class="student-card">
+                <div class="student-title">鐘濰遠</div>
+                <div class="student-image-container">
+                    <img src="鐘濰遠.jpg" alt="鐘濰遠" class="student-image">
+                </div>
+            </div>
+            
+            <div class="student-card">
+                <div class="student-title">羅一程</div>
+                <div class="student-image-container">
+                    <img src="羅一程.jpg" alt="羅一程" class="student-image">
+                </div>
+            </div>
+            
+            <div class="student-card">
+                <div class="student-title">吳培愷</div>
+                <div class="student-image-container">
+                    <img src="吳培愷.jpg" alt="吳培愷" class="student-image">
+                </div>
+            </div>
+            
+            <!-- 視頻容器 -->
+            <div class="video-container">
+                <div class="video-title">飛機影片</div>
+                <div class="video-wrapper">
+                    <video controls>
+                        <source src="飛機影片.mp4" type="video/mp4">
+                        您的瀏覽器不支持視頻標籤。
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

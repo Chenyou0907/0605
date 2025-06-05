@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人網站</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showSection('about')">自我介紹</a></li>
+            <li><a href="#" onclick="showSection('portfolio')">成果展示</a></li>
+            <li><a href="#" onclick="showSection('learning')">學習過程</a></li>
+            <li><a href="#" onclick="showSection('thoughts')">心得與反思</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <section id="about" class="section active">
+            <h1>自我介紹</h1>
+                <div class="info-item">
+                    <span class="label">姓名</span>
+                    陳正祐
+                </div>
+                <div class="info-item">
+                    <span class="label">學系</span>
+                    資訊工程系一年級
+                </div>
+                <div class="info-item">
+                    <span class="label">學號</span>
+                    5B3G0035
+                </div>
+                <div class="info-item">
+                    <span class="label">課程名稱</span>
+                    基礎網頁設計
+                </div>
+                <div class="info-item">
+                    <span class="label">指導老師</span>
+                    劉毓芬
+                </div>
+                <div class="info-item">
+                    <span class="label">製作日期</span>
+                    2025/05/29
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <h1>成果展示</h1>
+            <div class="portfolio-container">
+                <!-- HTML 作品 -->
+                <div class="file-card">
+                    <div class="file-icon">
+                        <i class="fab fa-html5 html-icon"></i>
+                    </div>
+                    <h3>HTML 基礎語法練習</h3>
+                    <p class="work-description">
+                        練習HTML基礎標籤的使用：<br>
+                        標題、段落、清單、表格
+                    </p>
+                    <a href="html結果展示/基礎語法練習.html" class="file-link" target="_blank">查看作品</a>
+                </div>
+
+                <div class="file-card">
+                    <div class="file-icon">
+                        <i class="fab fa-html5 html-icon"></i>
+                    </div>
+                    <h3>HTML 表單設計</h3>
+                    <p class="work-description">
+                        製作各種表單元素：<br>
+                        輸入框、選單、單選、複選
+                    </p>
+                    <a href="html結果展示/表單.html" class="file-link" target="_blank">查看作品</a>
+                </div>
+
+                <!-- CSS 作品 -->
+                <div class="file-card">
+                    <div class="file-icon">
+                        <i class="fab fa-css3-alt css-icon"></i>
+                    </div>
+                    <h3>CSS 陰影效果</h3>
+                    <p class="work-description">
+                        實作文字和區塊陰影：<br>
+                        多重陰影
+                    </p>
+                    <a href="css結果展示/filter3.html" class="file-link" target="_blank">查看作品</a>
+                </div>
+
+                <div class="file-card">
+                    <div class="file-icon">
+                        <i class="fab fa-css3-alt css-icon"></i>
+                    </div>
+                    <h3>CSS RWD漢堡設計</h3>
+                    <p class="work-description">
+                        響應式網頁設計：<br>
+                        漢堡選單、文字格式改變
+                    </p>
+                    <a href="css結果展示/week 12/飛機.html" class="file-link" target="_blank">查看作品</a>
+                </div>
+
+                <!-- JavaScript 作品 -->
+                <div class="file-card">
+                    <div class="file-icon">
+                        <i class="fab fa-js js-icon"></i>
+                    </div>
+                    <h3>JavaScript 甜點選擇投票</h3>
+                    <p class="work-description">
+                        互動投票系統：<br>
+                        投票功能、即時統計
+                    </p>
+                    <a href="js結果報告/甜點.html" class="file-link" target="_blank">查看作品</a>
+                </div>
+
+                <div class="file-card">
+                    <div class="file-icon">
+                        <i class="fab fa-js js-icon"></i>
+                    </div>
+                    <h3>JavaScript 成績等級計算</h3>
+                    <p class="work-description">
+                        成績計算系統：<br>
+                        輸入驗證、等級判定
+                    </p>
+                    <a href="js結果報告/work1.html" class="file-link" target="_blank">查看作品</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning" class="section">
+            <h1>學習過程</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>初期階段</h3>
+                    <p>開始學習HTML和CSS的基礎知識，理解網頁結構和樣式設計的概念。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>進階學習</h3>
+                    <p>深入學習JavaScript，理解DOM操作和事件處理。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>實作階段</h3>
+                    <p>運用所學知識開發個人網站，實踐響應式設計。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="thoughts" class="section">
+            <h1>心得與反思</h1>
+            <div class="reflection">
+                <h3>學習心得</h3>
+                <p>在這門課程中，我學習到了網頁開發的基礎知識，從最初的HTML結構到CSS樣式，再到JavaScript的互動功能。謝謝老師這學期的教導，讓我學到了很多東西，也讓我對網頁開發有了更深的了解。</p>
+                
+                <h3>遇到的挑戰</h3>
+                <p>在學習過程中，最具挑戰性的部分是理解JavaScript的非同步概念和響應式設計的實現。透過不斷的實踐和嘗試，我逐漸掌握了這些技能。</p>
+                
+                <h3>未來展望</h3>
+                <p>這個課程讓我對網頁開發產生了濃厚的興趣。未來我希望能夠學習更多進階的技術，如前端框架和後端開發，打造更完整的網站應用。</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

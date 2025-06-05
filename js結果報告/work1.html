@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成績等第轉換</title>
+</head>
+<body>
+    <script>
+        var X = prompt("請輸入您的成績 (0-100)：","");
+        X = parseInt(X);
+        
+        var grade = "";
+        var gp = 0;
+        
+        if (X >= 90 && X <= 100) {
+            grade = "A+";
+            gp = 4.3;
+        } else if (X >= 85 && X <= 89) {
+            grade = "A";
+            gp = 4.0;
+        } else if (X >= 80 && X <= 84) {
+            grade = "A-";
+            gp = 3.7;
+        } else if (X >= 77 && X <= 79) {
+            grade = "B+";
+            gp = 3.3;
+        } else if (X >= 73 && X <= 76) {
+            grade = "B";
+            gp = 3.0;
+        } else if (X >= 70 && X <= 72) {
+            grade = "B-";
+            gp = 2.7;
+        } else if (X >= 67 && X <= 69) {
+            grade = "C+";
+            gp = 2.3;
+        } else if (X >= 63 && X <= 66) {
+            grade = "C";
+            gp = 2.0;
+        } else if (X >= 60 && X <= 62) {
+            grade = "C-";
+            gp = 1.7;
+        } else if (X >= 50 && X <= 59) {
+            grade = "D";
+            gp = 1.0;
+        } else if (X >= 1 && X <= 49) {
+            grade = "E";
+            gp = 0;
+        } else if (X == 0) {
+            grade = "X";
+            gp = 0;
+        } else {
+            grade = "無效的成績";
+            gp = "無效";
+        }
+        
+        alert("等第: " + grade + "\nGP值: " + gp);
+    </script>
+</body>
+</html>

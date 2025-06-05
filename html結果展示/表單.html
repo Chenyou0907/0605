@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單</title>
+    <style>
+        body {
+            text-align: center; /* 使文本居中 */
+        }
+        fieldset {
+            margin: 15px auto; /* 上下间距，左右自动 */
+            padding: 10px;
+            width: 80%; /* 设置宽度 */
+            max-width: 600px; /* 最大宽度 */
+        }
+        label {
+            display: inline-block;
+            width: 60px;
+        }
+        textarea {
+            width: 100%; /* 使文本区域宽度为100% */
+            height: 100px;
+        }
+        iframe {
+            margin-top: 20px; /* 上边距 */
+            width: 640px; /* 固定宽度 */
+            height: 800px; /* 固定高度 */
+        }
+    </style>
+</head>
+<body>
+
+<h1>填寫以下表單</h1>
+<form action="https://formspree.io/f/xwplkrnl" method="POST">
+    <fieldset>
+        <legend>個人資料</legend>
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">郵件：</label>
+        <input type="email" id="email" name="email" required><br><br>
+    </fieldset>
+
+    <fieldset>
+        <legend>遊玩相關</legend>
+        <p>可遊玩時間(可複選)：<br>
+            <input type="checkbox" name="時間" value="2~4點">2~4點<br>
+            <input type="checkbox" name="時間" value="4~6點">4~6點<br>
+            <input type="checkbox" name="時間" value="6~8點">6~8點
+        </p>
+        <p>喜歡的模式是：<br>
+            <input type="radio" name="模式" value="死鬥">死鬥<br>
+            <input type="radio" name="模式" value="牌位">牌位<br>
+            <input type="radio" name="模式" value="一般">一般<br>
+            <input type="radio" name="模式" value="超速">超速
+        </p>
+        <textarea name="其他需求或建議可以寫在此" 其他要求="其他需求或建議可以寫在此"></textarea>
+    </fieldset>
+
+    <fieldset>
+        <legend>其他模式建議</legend>
+        <textarea name="其他模式建議"></textarea>
+    </fieldset>
+    <input type="submit" value="送出">
+    <input type="reset" value="重置">
+</form>
+
+<h1>請填以下表單</h1>
+<iframe src="https://forms.gle/dgCkp94pAoGyDEKt7" frameborder="0" marginheight="0" marginwidth="0">加载中...</iframe>
+<br>
+<video width="1200" controls autoplay muted loop>
+    <source src="3月12日.mp4" type="video/mp4">
+</video>
+</body>
+</html>

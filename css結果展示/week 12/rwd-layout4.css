@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.headline{
+    font-size:30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.list{
+    display:flex;
+    /*註：下一層水平排列*/
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.item{
+    background-color: rgb(0, 140, 255);
+    flex:none;
+    width:280px;
+    margin:10px;
+    height: 100px;
+    padding: 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 1250px) {
+    /*螢幕小於1250PX 執行下面*/
+    .list{
+        flex-wrap:wrap;
+    }
+    .item{
+        width:45%
+    }
+    .headline{
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    /*螢幕小於500PX 執行下面*/
+    .item{
+        width:90%
+    }
+    .headline{
+        font-size: 18px;
+    }
+} 

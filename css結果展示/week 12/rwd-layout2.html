@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWD rwd-layout2</title>
+    <link rel="stylesheet" href="rwd-layout2.css">
+</head>
+<body>
+    <div class="viewport-controls">
+        <button class="view-btn" data-width="500">手機視圖</button>
+        <button class="view-btn" data-width="1000">平板視圖</button>
+        <button class="view-btn" data-width="1251">電腦視圖</button>
+    </div>
+
+    <div id="view-indicator" class="view-indicator"></div>
+
+    <div class="list">
+        <div class="item">產品 1</div>
+        <div class="item">產品 2</div>
+        <div class="item">產品 3</div>
+        <div class="item">產品 4</div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.view-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const width = this.getAttribute('data-width');
+                const viewIndicator = document.getElementById('view-indicator');
+                
+                // 重置所有按鈕的狀態
+                document.querySelectorAll('.view-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // 激活當前按鈕
+                this.classList.add('active');
+                
+                // 調整視口大小和顯示指示器
+                if (width === '100%') {
+                    // 重置視口
+                    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0');
+                    document.body.style.width = '';
+                    document.body.style.margin = '';
+                    document.body.style.boxShadow = '';
+                    document.body.style.padding = '';
+                    document.body.style.borderRadius = '';
+                    document.body.style.backgroundColor = '';
+                    viewIndicator.textContent = '';
+                    
+                    // 移除所有媒體查詢類
+                    document.body.classList.remove('mobile-view', 'tablet-view', 'desktop-view');
+                    
+                    // 移除設備標籤
+                    const deviceLabel = document.getElementById('device-label');
+                    if (deviceLabel) {
+                        deviceLabel.remove();
+                    }
+                } else {
+                    // 設置固定寬度和外框
+                    document.body.style.width = width + 'px';
+                    document.body.style.margin = '20px auto';
+                    document.body.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
+                    document.body.style.padding = '10px';
+                    document.body.style.borderRadius = '10px';
+                    document.body.style.backgroundColor = '#fff';
+                    viewIndicator.textContent = `當前視圖寬度: ${width}px`;
+                    
+                    // 添加對應的媒體查詢類
+                    document.body.classList.remove('mobile-view', 'tablet-view', 'desktop-view');
+                    
+                    // 創建或更新設備標籤
+                    let deviceLabel = document.getElementById('device-label');
+                    if (!deviceLabel) {
+                        deviceLabel = document.createElement('div');
+                        deviceLabel.id = 'device-label';
+                        document.body.prepend(deviceLabel);
+                    }
+                    
+                    // 設置樣式和顯示設備類型
+                    if (parseInt(width) <= 500) {
+                        document.body.classList.add('mobile-view');
+                        deviceLabel.textContent = '手機視圖';
+                        deviceLabel.className = 'device-label mobile-label';
+                    } else if (parseInt(width) <= 1250) {
+                        document.body.classList.add('tablet-view');
+                        deviceLabel.textContent = '平板視圖';
+                        deviceLabel.className = 'device-label tablet-label';
+                    } else {
+                        document.body.classList.add('desktop-view');
+                        deviceLabel.textContent = '電腦視圖';
+                        deviceLabel.className = 'device-label desktop-label';
+                    }
+                }
+            });
+        });
+        
+        // 預設設置為完整視圖
+        document.querySelector('[data-width="100%"]').classList.add('active');
+    </script>
+    
+    <style>
+        /* 視圖控制按鈕樣式 */
+        .viewport-controls {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .view-btn {
+            border: none;
+            background-color: #e0e0e0;
+            margin: 0 5px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background-color: #d0d0d0;
+        }
+
+        .view-btn.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        /* 視圖指示器樣式 */
+        .view-indicator {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+        
+        /* 設備標籤樣式 */
+        .device-label {
+            text-align: center;
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .mobile-label {
+            background-color: #FF5722;
+        }
+        
+        .tablet-label {
+            background-color: #2196F3;
+        }
+        
+        .desktop-label {
+            background-color: #4CAF50;
+        }
+        
+        /* 手機視圖樣式 */
+        .mobile-view .item {
+            width: 90% !important;
+        }
+        
+        /* 平板視圖樣式 */
+        .tablet-view .item {
+            width: 45% !important;
+        }
+    </style>
+</body>
+</html> 
