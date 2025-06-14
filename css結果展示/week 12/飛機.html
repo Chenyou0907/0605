@@ -74,6 +74,8 @@
             cursor: pointer;
             margin-bottom: 15px;
             border-radius: 4px;
+            position: relative;
+            z-index: 1000;
         }
         
         .hamburger-icon {
@@ -91,6 +93,7 @@
             background: white;
             border-radius: 3px;
             left: 0;
+            transition: all 0.3s ease;
         }
         
         .hamburger-icon span:nth-child(1) {
@@ -103,6 +106,30 @@
         
         .hamburger-icon span:nth-child(3) {
             top: 16px;
+        }
+        
+        .mobil-menu {
+            display: none;
+            position: relative;
+            background-color: #333;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        
+        .mobil-menu.active {
+            display: block;
+        }
+        
+        .mobil-menu .menu-item {
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+        }
+        
+        .mobil-menu .menu-item:hover {
+            background-color: #444;
         }
         
         /* 平板設備 - 螢幕寬度小於 1024px */
